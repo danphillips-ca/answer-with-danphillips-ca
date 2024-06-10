@@ -104,13 +104,27 @@ h1 {
     width: 80%;
 }
 
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh; /* Ensure modal does not exceed 90% of viewport height */
+}
+
 .modal-body {
+    overflow-y: auto; /* Make modal body scrollable if content exceeds max height */
+    flex: 1 1 auto;
+    padding: 1rem;
+    max-height: calc(90vh - 120px); /* Adjust value as needed for the height of the header and footer */
+    font-size: max(3vw, 28px); /* Ensures font-size is at least 28px */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: max(3vw, 28px); /* Ensures font-size is at least 16px */
+    justify-content: flex-start;
+    text-align: center; /* Center text horizontally */
+}
+
+.modal-header, .modal-footer {
+    flex-shrink: 0;
 }
 
 .modal-body > p,
@@ -122,6 +136,10 @@ h1 {
     max-width: 100%;
 }
 
+.modal-body > img {
+    border: 3px solid #363636;
+}
+
 .modal-body img,
 .modal-body video,
 .modal-body audio,
@@ -130,6 +148,7 @@ h1 {
     max-height: 500px;
     height: auto;
 }
+
 
 /* Custom width and height for modals */
 @media (min-width: 768px) {

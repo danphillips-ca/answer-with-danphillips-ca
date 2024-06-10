@@ -251,13 +251,18 @@ function changeColor(element) {
 
 function handleFileSelect(event) {
     const file = event.target.files[0];
-    if (file && file.type === "text/csv") {
-        window.selectedFile = file;
-        showToast("Ready to load your game", file.name.replace('.csv', ''), "info");
+    if (file) {
+        if (file.type === "text/csv" || file.name.endsWith('.csv')) {
+            window.selectedFile = file;
+            showToast("Ready to load your game", file.name.replace('.csv', ''), "info");
+        } else {
+            showToast("Error", "Please select a CSV file.", "danger");
+        }
     } else {
-        showToast("Error", "Please select a CSV file.", "danger");
+        showToast("Error", "No file selected.", "danger");
     }
 }
+
 
 function handleFile() {
     const file = window.selectedFile;

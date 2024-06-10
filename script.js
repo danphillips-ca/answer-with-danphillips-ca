@@ -63,87 +63,6 @@ function showToast(title, message, type) {
     toast.show();
 }
 
-// DOMContentLoaded and Event Listeners
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.alert .close').forEach(button => {
-        button.addEventListener('click', function() {
-            const alert = this.closest('.alert');
-            alert.classList.add('fade');
-            setTimeout(() => {
-                alert.style.display = 'none';
-                alert.classList.remove('fade'); // Remove fade class after hiding
-            }, 500); // Fade out duration
-        });
-    });
-});
-
-document.getElementById('csvFileInput').addEventListener('change', handleFileSelect, false);
-
-// File Handling
-function handleFileSelect(event) {
-    const file = event.target.files[0];
-    if (file && file.type === "text/csv") {
-        window.selectedFile = file;
-        showToast("Ready to load your game", file.name.replace('.csv', ''), "info");
-    } else {
-        showToast("Error", "Please select a CSV file.", "danger");
-    }
-}
-
-function handleFile() {
-    const file = window.selectedFile;
-    if (file) {
-        Papa.parse(file, {
-            header: false,
-            complete: function(results) {
-                const triviaData = parseCSVData(results.data);
-                if (triviaData.length) {
-                    createGameBoard(triviaData, results.data[0], file.name.replace('.csv', ''));
-                    createModals(triviaData);
-                    showToast("File Loaded", "The file has been successfully loaded.", "success");
-                    closeAlertBox();
-                } else {
-                    showToast("Error", "Parsed data is empty or malformed.", "danger");
-                }
-            },
-            error: function(error) {
-                showToast("Error", "An error occurred while parsing the CSV file.", "danger");
-            }
-        });
-    } else {
-        showToast("Error", "Please select a CSV file.", "danger");
-    }
-}
-
-function loadSample(filePath) {
-    fetch(filePath)
-        .then(response => response.ok ? response.text() : Promise.reject(`HTTP error! Status: ${response.status}`))
-        .then(csvText => {
-            Papa.parse(csvText, {
-                header: false,
-                complete: function(results) {
-                    const triviaData = parseCSVData(results.data);
-                    if (triviaData.length) {
-                        createGameBoard(triviaData, results.data[0], filePath.split('/').pop().replace('.csv', ''));
-                        createModals(triviaData);
-                        showToast("File Loaded", "The sample file has been successfully loaded.", "success");
-                        closeAlertBox();
-                    } else {
-                        showToast("Error", "Parsed data is empty or malformed.", "danger");
-                    }
-                },
-                error: function(error) {
-                    showToast("Error", "An error occurred while parsing the sample CSV file.", "danger");
-                }
-            });
-        })
-        .catch(error => {
-            showToast("Error", "An error occurred while fetching the sample CSV file.", "danger");
-        });
-}
-
-
-// Parsing and Data Processing
 function parseCSVData(data) {
     const headers = data[0];
     const questionsAndAnswers = data.slice(1);
@@ -182,7 +101,6 @@ function parseCSVData(data) {
     return triviaData.filter(item => item.question || item.answer || item.questionMedia || item.answerMedia);
 }
 
-// UI Creation and Manipulation
 function createGameBoard(triviaData, headers, fileName) {
     const gameBoardContainer = document.getElementById('game-board-container');
 
@@ -219,7 +137,6 @@ function createGameBoard(triviaData, headers, fileName) {
     // Append game board to the main container
     gameBoardContainer.appendChild(gameBoard);
 }
-
 
 function createCategoryLabels(categoryContainer, headers) {
     headers.slice(1).forEach((category, index) => {
@@ -331,3 +248,84 @@ function closeAlertBox() {
 function changeColor(element) {
     element.querySelector('.card-body').style.color = '#807A55';
 }
+
+function handleFileSelect(event) {
+    const file = event.target.files[0];
+    if (file && file.type === "text/csv") {
+        window.selectedFile = file;
+        showToast("Ready to load your game", file.name.replace('.csv', ''), "info");
+    } else {
+        showToast("Error", "Please select a CSV file.", "danger");
+    }
+}
+
+function handleFile() {
+    const file = window.selectedFile;
+    if (file) {
+        loadCSV(file);
+    } else {
+        showToast("Error", "Please select a CSV file.", "danger");
+    }
+}
+
+function loadSample(filePath) {
+    console.log(`Attempting to load sample file from: ${filePath}`);
+    fetch(filePath)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(csvText => {
+            console.log("Fetched CSV Text:", csvText);
+            const fileName = filePath.split('/').pop().replace('.csv', '');
+            const parsedData = Papa.parse(csvText, { header: false }).data;
+            parseAndLoadCSV(parsedData, fileName);
+        })
+        .catch(error => {
+            console.error("Error fetching sample CSV file:", error);
+            showToast("Error", "An error occurred while fetching the sample CSV file.", "danger");
+        });
+}
+
+
+function loadCSV(file) {
+    Papa.parse(file, {
+        header: false,
+        complete: function(results) {
+            parseAndLoadCSV(results.data, file.name.replace('.csv', ''));
+        },
+        error: function(error) {
+            showToast("Error", "An error occurred while parsing the CSV file.", "danger");
+        }
+    });
+}
+
+function parseAndLoadCSV(data, fileName) {
+    const triviaData = parseCSVData(data);
+    if (triviaData.length) {
+        createGameBoard(triviaData, data[0], fileName);
+        createModals(triviaData);
+        showToast("File Loaded", "The file has been successfully loaded.", "success");
+        closeAlertBox();
+    } else {
+        showToast("Error", "Parsed data is empty or malformed.", "danger");
+    }
+}
+
+// DOMContentLoaded and Event Listeners
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.alert .close').forEach(button => {
+        button.addEventListener('click', function() {
+            const alert = this.closest('.alert');
+            alert.classList.add('fade');
+            setTimeout(() => {
+                alert.style.display = 'none';
+                alert.classList.remove('fade'); // Remove fade class after hiding
+            }, 500); // Fade out duration
+        });
+    });
+
+    document.getElementById('csvFileInput').addEventListener('change', handleFileSelect, false);
+});

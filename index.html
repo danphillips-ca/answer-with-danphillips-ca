@@ -56,9 +56,6 @@
 <!--Instructions Alert-->
 <div class="container mt-5">
     <div class="alert custom-alert alert-dismissible col-md-6 col-12" role="alert" aria-label="Introduction and instructions">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
         <h1 class="mb-4 text-center"><span style="font-size:.6em;">Hristo's Loyal</span><br/> Bison Slugs <br/><span style="font-size:.6em;">(a trivia club)</span></h1>
         <p>This was originally created for Hristo's Loyal Bison Slugs (est. 2022) - my trivia team in Halifax. Files that you load into this game are rendered completely by your browser; nothing is transferred from your computer.</p>
 
@@ -72,7 +69,7 @@
         <ul>
             <li>You can have up to four unique categories.</li>
             <li>Questions (Q), Answers (A), Question Media (QM), and Answer Media (AM) must correspond to the same unique point value within their category. (See template.)</li>
-            <li>To include media, provide the complete url. YouTube, images, audio, and video are generally supported. If you don't want media, leave those cells blank.</li>
+            <li>To include media, provide a complete online url. YouTube, images, audio, and video are generally supported. Ensure the websites hosting your trivia images allow hotlinking - for example, a public album on Google Photos. If you don't want media, leave those cells blank.</li>
         </ul>
 
         <p>Need an example to get started? Try these!</p>
@@ -110,11 +107,10 @@
 
     </div>
 </div>
-
     <!--END Instructions Alert-->
 
 
-    <!--BEGIN Game-->
+    <!--Generate Game-->
     <div class="container mt-5">
         <div id="game-board-container"></div>
         <div id="modals-container"></div>

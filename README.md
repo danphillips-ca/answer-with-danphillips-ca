@@ -1,4 +1,4 @@
-# answer-with-danphillips-ca
+# trivia-danphillips-ca
 A platform for playing trivia.
 
 

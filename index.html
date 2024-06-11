@@ -78,9 +78,17 @@
             <h1 class="mb-4 text-center"><span style="font-size:.6em;">Hristo's Loyal</span><br/> Bison Slugs <br/><span style="font-size:.6em;">trivia club</span></h1>
             <p>This is a flashcard and pub trivia platform originally developed for Hristo's Loyal Bison Slugs trivia club (est. Halifax 2022) - my trivia team. Files that you load into this game are rendered completely by your browser; nothing is transferred from your computer.</p>
     
+            <h2 style="font-size: 1.5rem">Ready to play?</h2>
+
+            <!--LOAD GAME-->
+            <div class="col-12">
+                <input type="file" class="form-control m-2 w-100" id="csvFileInput" accept=".csv">
+                <button class="btn btn-primary m-2 w-100" onclick="handleFile()">Load Your Own Game <i class="bi bi-stars"></i></button>
+            </div>
+
+            <!--INSTRUCTIONS-->
             <h2 style="font-size: 1.5rem">Instructions</h2>
             <p style="margin: 0;">Use this template to populate trivia questions.</p>
-    
             <div class="col-12">
                 <a href="The Greatest Trivia Game of All Time.csv" download class="btn btn-primary m-2 w-100">Download Template <i class="bi bi-file-earmark-spreadsheet ms-1"></i></a>
             </div>
@@ -110,14 +118,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-    
-            <h2 style="font-size: 1.5rem">Ready to play?</h2>
-    
-            <!--LOAD GAME-->
-            <div class="col-12">
-                <input type="file" class="form-control m-2 w-100" id="csvFileInput" accept=".csv">
-                <button class="btn btn-primary m-2 w-100" onclick="handleFile()">Load Your Own Game <i class="bi bi-stars"></i></button>
             </div>
         </div>
     </div>

@@ -252,6 +252,14 @@ function changeColor(element) {
     element.querySelector('.card-body').style.color = '#807A55';
 }
 
+function resetColor(element) {
+    let cardBodies = element.querySelectorAll('.card-body');
+    cardBodies.forEach(cardBody => {
+        cardBody.style.color = '';  // Removing the inline style to reset to default color
+    });
+}
+
+
 function handleFileSelect(event) {
     const file = event.target.files[0];
     if (file) {

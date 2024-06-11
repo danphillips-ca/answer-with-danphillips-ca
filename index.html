@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
 <!-- Dublin Core Metadata -->
 <meta name="DC.title" content="Bison Slugs Trivia Platform">
 <meta name="DC.creator" content="Dan Phillips">
@@ -64,7 +63,7 @@
                         <a class="nav-link" href="javascript:location.reload()">Reload</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="toggleFullscreen()">Fullscreen</a>
+                        <a class="nav-link" href="#" onclick="toggleFullscreen()">Toggle Fullscreen</a>
                     </li>
                 </ul>
             </div>
@@ -76,14 +75,15 @@
         
         <div class="alert custom-alert alert-dismissible col-md-6 col-12 position-relative" role="alert" aria-label="Introduction and instructions">
             <h1 class="mb-4 text-center"><span style="font-size:.6em;">Hristo's Loyal</span><br/> Bison Slugs <br/><span style="font-size:.6em;">trivia club</span></h1>
-            <p>This is a flashcard and pub trivia platform originally developed for Hristo's Loyal Bison Slugs trivia club (est. Halifax 2022) - my trivia team. Files that you load into this game are rendered completely by your browser; nothing is transferred from your computer.</p>
+            <p>This is a pub trivia platform originally developed for Hristo's Loyal Bison Slugs - my trivia team, est. Halifax 2022. I think it has potential for a group classroom flashcard activity. Let me know what you think!</p>
+            <p>Files that you load into this game are rendered completely by your browser; nothing is transferred from your computer.</p>
     
             <h2 style="font-size: 1.5rem">Ready to play?</h2>
 
             <!--LOAD GAME-->
             <div class="col-12">
                 <input type="file" class="form-control m-2 w-100" id="csvFileInput" accept=".csv">
-                <button class="btn btn-primary m-2 w-100" onclick="handleFile()">Load Your Own Game <i class="bi bi-stars"></i></button>
+                <button class="btn btn-primary m-2 w-100" onclick="handleFile()">Load Your Game <i class="bi bi-stars"></i></button>
             </div>
             <hr/>
             <!--INSTRUCTIONS-->

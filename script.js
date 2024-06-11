@@ -341,12 +341,17 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('csvFileInput').addEventListener('change', handleFileSelect, false);
 });
 
-
-/*Navbar*/
 function toggleFullscreen() {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
-  } else if (document.exitFullscreen) {
-    document.exitFullscreen();
-  }
+    var navbarCollapse = document.getElementById('navbarNav');
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else if (document.exitFullscreen) {
+        document.exitFullscreen();
+    }
+    if (navbarCollapse.classList.contains('show')) {
+        var bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+            toggle: false
+        });
+        bsCollapse.hide();
+    }
 }

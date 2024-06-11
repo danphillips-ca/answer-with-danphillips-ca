@@ -237,11 +237,14 @@ function createModals(triviaData) {
     });
 }
 
-// Specific Event Handlers
 function closeAlertBox() {
     const alert = document.querySelector('.alert');
+    const image = document.querySelector('.peek-image');
     if (alert) {
         alert.style.display = 'none';
+    }
+    if (image) {
+        image.style.display = 'none';
     }
 }
 
@@ -319,14 +322,17 @@ function parseAndLoadCSV(data, fileName) {
     }
 }
 
-// DOMContentLoaded and Event Listeners
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.alert .close').forEach(button => {
         button.addEventListener('click', function() {
             const alert = this.closest('.alert');
+            const image = document.querySelector('.peek-image');
             alert.classList.add('fade');
             setTimeout(() => {
                 alert.style.display = 'none';
+                if (image) {
+                    image.style.display = 'none';
+                }
                 alert.classList.remove('fade'); // Remove fade class after hiding
             }, 500); // Fade out duration
         });
@@ -334,3 +340,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('csvFileInput').addEventListener('change', handleFileSelect, false);
 });
+
+
+/*Navbar*/
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else if (document.exitFullscreen) {
+    document.exitFullscreen();
+  }
+}

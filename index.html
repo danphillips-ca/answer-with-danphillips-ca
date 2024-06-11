@@ -31,7 +31,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
-    <title>Hristo's Loyal Bison Slugs - Trivia!</title>
+    <title>Bison Slugs Trivia</title>
 
     <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,68 +53,86 @@
 </head>
 
 <body>
-<!--Instructions Alert-->
-<div class="container mt-5">
-    <div class="alert custom-alert alert-dismissible col-md-6 col-12" role="alert" aria-label="Introduction and instructions">
-        <h1 class="mb-4 text-center"><span style="font-size:.6em;">Hristo's Loyal</span><br/> Bison Slugs <br/><span style="font-size:.6em;">(a trivia club)</span></h1>
-        <p>This was originally created for Hristo's Loyal Bison Slugs (est. 2022) - my trivia team in Halifax. Files that you load into this game are rendered completely by your browser; nothing is transferred from your computer.</p>
-
-        <h2 style="font-size: 1.5rem">Instructions</h2>
-        <p style="margin: 0;">Use this template to populate trivia questions.</p>
-
-        <div class="col-12">
-            <a href="The Greatest Trivia Game of All Time.csv" download class="btn btn-primary m-2 w-100">Download Template <i class="bi bi-file-earmark-spreadsheet ms-1"></i></a>
+    <nav class="navbar navbar-light bg-light fixed-right">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:location.reload()">Reload</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="toggleFullscreen()">Fullscreen</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <p>Setup:</p>
-        <ul>
-            <li>You can have up to four unique categories.</li>
-            <li>Questions (Q), Answers (A), Question Media (QM), and Answer Media (AM) must correspond to the same unique point value within their category. (See template.)</li>
-            <li>To include media, provide a complete online url. YouTube, images, audio, and video are generally supported. Ensure the websites hosting your trivia images allow hotlinking - for example, a public album on Google Photos. If you don't want media, leave those cells blank.</li>
-        </ul>
-
-        <p>Need an example to get started? Try these!</p>
-        <div class="container">
-            <div class="row mb-3 ms-0 me-0">
-                <div class="col-lg-6 mb-3 mb-lg-0 text-center">
-                    <h3 style="font-size: 1rem; font-weight: bold;">Hristo Saves Christmas</h3>
-                    <div class="d-flex flex-column">
-                        <a href="examples/Hristo Saves Christmas.csv" download class="btn btn-primary w-100 d-flex justify-content-center align-items-center" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;">Download <i class="bi bi-file-earmark-spreadsheet ms-1"></i></a>
-                        <button class="btn btn-secondary w-100" style="border-top-left-radius: 0; border-top-right-radius: 0;" onclick="loadSample('examples/Hristo Saves Christmas.csv')">Play Now <i class="bi bi-mouse2"></i></button>
+    </nav>
+    <div class="container mt-5 position-relative">
+        <!-- Bison Slug image -->
+        <img src="images/bisonslug.webp" class="peek-image d-none d-md-block" alt="Peek Image">
+        
+        <div class="alert custom-alert alert-dismissible col-md-6 col-12 position-relative" role="alert" aria-label="Introduction and instructions">
+            <h1 class="mb-4 text-center"><span style="font-size:.6em;">Hristo's Loyal</span><br/> Bison Slugs <br/><span style="font-size:.6em;">trivia club</span></h1>
+            <p>This is a flashcard and pub trivia platform originally developed for Hristo's Loyal Bison Slugs trivia club (est. Halifax 2022) - my trivia team in Halifax. Files that you load into this game are rendered completely by your browser; nothing is transferred from your computer.</p>
+    
+            <h2 style="font-size: 1.5rem">Instructions</h2>
+            <p style="margin: 0;">Use this template to populate trivia questions.</p>
+    
+            <div class="col-12">
+                <a href="The Greatest Trivia Game of All Time.csv" download class="btn btn-primary m-2 w-100">Download Template <i class="bi bi-file-earmark-spreadsheet ms-1"></i></a>
+            </div>
+            <h2><span style="font-size:.6em;">Setup:</span></h2>
+            <ul>
+                <li>Label up to four unique categories. Delete excess columns.</li>
+                <li>Questions (Q), answers (A), and media (QM/AM) must correspond to the same unique point value within their category. (See template.)</li>
+                <li>Media is optional. If you don't want media, leave those cells blank.</li>
+                <li>Media should be a complete online url. YouTube, images, audio, and video files are supported. Please ensure the websites hosting your media allow hotlinking. (A public photo album on Google Photos works well!)</li>
+            </ul>
+    
+            <p>Need an example to get started? Try these!</p>
+            <div class="container">
+                <div class="row mb-3 ms-0 me-0">
+                    <div class="col-lg-6 mb-3 mb-lg-0 text-center">
+                        <h3 style="font-size: 1rem; font-weight: bold;">Hristo Saves Christmas</h3>
+                        <div class="d-flex flex-column">
+                            <a href="examples/Hristo Saves Christmas.csv" download class="btn btn-primary w-100 d-flex justify-content-center align-items-center" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;">Download <i class="bi bi-file-earmark-spreadsheet ms-1"></i></a>
+                            <button class="btn btn-secondary w-100" style="border-top-left-radius: 0; border-top-right-radius: 0;" onclick="loadSample('examples/Hristo Saves Christmas.csv')">Play Now <i class="bi bi-mouse2"></i></button>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6 text-center">
-                    <h3 style="font-size: 1rem; font-weight: bold;">Fast Food Extravaganza</h3>
-                    <div class="d-flex flex-column">
-                        <a href="examples/The Bison Slugs Do Takeout.csv" download class="btn btn-primary w-100 d-flex justify-content-center align-items-center" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;">Download <i class="bi bi-file-earmark-spreadsheet ms-1"></i></a>
-                        <button class="btn btn-secondary w-100" style="border-top-left-radius: 0; border-top-right-radius: 0;" onclick="loadSample('examples/The Bison Slugs Do Takeout.csv')">Play Now <i class="bi bi-mouse2"></i></button>
+                    <div class="col-lg-6 text-center">
+                        <h3 style="font-size: 1rem; font-weight: bold;">Fast Food Extravaganza</h3>
+                        <div class="d-flex flex-column">
+                            <a href="examples/The Bison Slugs Do Takeout.csv" download class="btn btn-primary w-100 d-flex justify-content-center align-items-center" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;">Download <i class="bi bi-file-earmark-spreadsheet ms-1"></i></a>
+                            <button class="btn btn-secondary w-100" style="border-top-left-radius: 0; border-top-right-radius: 0;" onclick="loadSample('examples/The Bison Slugs Do Takeout.csv')">Play Now <i class="bi bi-mouse2"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
+    
+            <h2 style="font-size: 1.5rem">Ready to play?</h2>
+    
+            <!--LOAD GAME-->
+            <div class="col-12">
+                <input type="file" class="form-control m-2 w-100" id="csvFileInput" accept=".csv">
+                <button class="btn btn-primary m-2 w-100" onclick="handleFile()">Load Your Own Game <i class="bi bi-stars"></i></button>
+            </div>
         </div>
-
-        <h2 style="font-size: 1.5rem">Ready to play?</h2>
-
-        <!--LOAD GAME-->
-        <div class="col-12">
-            <input type="file" class="form-control m-2 w-100" id="csvFileInput" accept=".csv">
-            <button class="btn btn-primary m-2 w-100" onclick="handleFile()">Load Your Own Game <i class="bi bi-stars"></i></button>
-        </div>
-        <!--END LOAD GAME-->
-
-        <!--TOAST-->
-        <div id="toast-container" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
-        <!--END TOAST-->
-
     </div>
-</div>
     <!--END Instructions Alert-->
+    
+    <!--TOAST-->
+    <div id="toast-container" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+    <!--END TOAST-->
+    
 
-
-    <!--Generate Game-->
-    <div class="container mt-5">
-        <div id="game-board-container"></div>
-        <div id="modals-container"></div>
-    </div>
+<!--Generate Game-->
+<div class="container mt-5">
+    <div id="game-board-container"></div>
+    <div id="modals-container"></div>
+</div>
 
 
     <!--BootStrap Script-->

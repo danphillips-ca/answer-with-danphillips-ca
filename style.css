@@ -1,35 +1,72 @@
-/* Game Grid*/
-
-body, a {
-    background-color: #363636;
-    text-decoration: none;
+/* Define CSS Variables for Colors */
+:root {
+    --background-color: #363636;
+    --primary-color: #0055AA;
+    --secondary-color: #ffcc00;
+    --alert-bg-color: #cccccc;
+    --text-color: white;
+    --border-color: #363636;
+    --box-shadow-color: black;
 }
 
+/* General Styles */
+body, a {
+    background-color: var(--background-color);
+    text-decoration: none;
+    
+}
+
+
+/* Base styles */
+.peek-image {
+    position: absolute;
+    top: 30%; /* Move the image higher */
+    left: 50%;
+    transform: translate(-50%, -50%) scaleX(-1); /* Center and flip the image horizontally */
+    z-index: -1; /* Ensure it is behind the alert */
+    max-height: 60vh; /* Make the image 60% of the screen height */
+    width: auto; /* Maintain aspect ratio */
+}
+
+/* Media query for md and larger screens */
+@media (min-width: 768px) {
+    .peek-image {
+        left: 50%; /* Center the image horizontally */
+        top: 20%; /* Adjust the vertical position as needed */
+    }
+}
+
+/* Ensure the image hides correctly */
+.peek-image[style*="display: none"] {
+    display: none !important;
+}
+
+/* Game Board */
 .game-board {
     background-color: black;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding: 0 3rem;
 }
 
+/* Custom Alert */
 .custom-alert {
-    background-color: #cccccc; /* Custom background color */
-    color: #363636; /* Custom text color */
-    border-color: #363636; /* Custom border color */
-    opacity: 90%;
+    background-color: var(--alert-bg-color); /* Custom background color */
+    color: var(--border-color); /* Custom text color */
+    border-color: var(--border-color); /* Custom border color */
 }
 
-/*Game Title*/
+/* Game Title */
 h1 {
     font-family: 'Playfair Display', serif;
     font-weight: bold;
 }
 
+/* File Name */
 .file-name {
-    color: white;
+    color: var(--text-color);
     text-shadow: 0px 0px 20px rgba(0, 0, 0, 1);
 }
 
-/*Card Positioning and Sizing*/
+/* Card Positioning and Sizing */
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -40,16 +77,16 @@ h1 {
     justify-content: center;
 }
 
-/*All Cards*/
+/* All Cards */
 .card {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: #0055AA;
+    background: var(--primary-color);
     border: none;
-    flex-direction: column; /*Necessary if categories break lines*/
-    height: 100%; /*Necessary if categories break lines*/
+    flex-direction: column; /* Necessary if categories break lines */
+    height: 100%; /* Necessary if categories break lines */
 }
 
 .card-body {
@@ -58,29 +95,30 @@ h1 {
     align-items: center;
     text-align: center;
     border: none;
-    text-shadow: 1px 1px 5px black;
+    text-shadow: 1px 1px 5px var(--box-shadow-color);
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: bold;
 }
 
 .card-value {
-    color: #ffcc00;
-    font-size: max(3vw, 28px); /* Ensures font-size is at least 16px */
+    color: var(--secondary-color);
+    font-size: max(3vw, 28px); /* Ensures font-size is at least 28px */
 }
 
+/* Card Category */
+.card-category {
+    color: var(--text-color);
+    font-size: max(2vw, 10px); /* Ensures font-size is at least 10px */
+}
+
+/* Adjust Card Category Font Weight on Small Screens */
 @media (max-width: 933px) { 
-    /* 3vw will be less than 28px when viewport width is less than 933px */
     .card-category {
         font-weight: normal;
     }
 }
 
-.card-category {
-    color: white;
-    font-size: max(2vw, 10px); /* Ensures font-size is at least 16px */
-}
-
-/*Close button for alert*/
+/* Close Button for Alert */
 .alert {
     position: relative;
 }
@@ -99,7 +137,7 @@ h1 {
     opacity: 1;
 }
 
-/*Question and Answer Modals*/
+/* Question and Answer Modals */
 .modal-dialog {
     width: 80%;
 }
@@ -137,7 +175,7 @@ h1 {
 }
 
 .modal-body > img {
-    border: 3px solid #363636;
+    border: 3px solid var(--border-color);
 }
 
 .modal-body img,
@@ -149,8 +187,7 @@ h1 {
     height: auto;
 }
 
-
-/* Custom width and height for modals */
+/* Custom Width and Height for Modals on Larger Screens */
 @media (min-width: 768px) {
     .modal-dialog {
         max-width: 90%;
@@ -164,3 +201,36 @@ h1 {
         overflow-y: auto;
     }
 }
+
+
+/* Navbar */
+
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar {
+    --bs-navbar-padding-y: 0;
+    padding: 0 1rem;
+  }
+  
+  .navbar-toggler {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #929292; /* Set the background color of the hamburger button */
+  }
+  
+  .navbar-nav .nav-link {
+    color: #000;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #007bff;
+  }
+  
+  .collapse.navbar-collapse {
+    justify-content: flex-end;
+  }
+  
